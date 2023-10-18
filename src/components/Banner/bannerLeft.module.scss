@@ -1,0 +1,30 @@
+.banner {
+    display: flex;
+    align-items: center; 
+    background-color: black; 
+    padding-left: 10px; 
+    width: 100px;
+    position: absolute;
+}
+.icons {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: space-between;
+    padding-top: 250px;
+}
+.iconLeft {
+    margin: 10px; 
+}
+.text{
+    margin-top: 200px;
+    margin-bottom: 50px;
+    writing-mode: vertical-rl; 
+    transform: rotate(180deg);
+    white-space: nowrap;
+    color: white;
+}
+  
+
+
+  
