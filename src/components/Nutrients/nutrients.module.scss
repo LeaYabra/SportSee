@@ -1,0 +1,24 @@
+.nutrients{
+    width: 35%;
+}
+.nutrient{
+    display: flex;
+    flex-direction: row;
+    background-color:  #FBFBFB;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+ 
+}
+.text{
+    padding-left: 30px;
+    line-height: 0.5;
+}
+.unit{
+    font-weight: 500;
+    font-size: 20px;
+}
+.nutriText {
+color:  #74798C;
+font-weight: 500;
+}
