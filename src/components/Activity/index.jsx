@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from './activity.module.scss';
 import {
   BarChart,
   Bar,
@@ -32,8 +33,8 @@ export default function App() {
     <div>
       {data.length > 0 ? (
         <BarChart
-          width={600}
-          height={300}
+          width={750}
+          height={250}
           data={data}
           margin={{
             top: 5,

@@ -23,8 +23,21 @@ function App() {
         ) : (
           <p>Chargement en cours...</p>
         )}
-        <Activity/> 
-        <Nutrients />
+        <div className={styles.dashboard}>
+          <div className={styles.activity}>
+            <div className={styles.text}>
+            <p className={styles.activityText}>Activité quotidienne</p>
+            <div className={styles.dotContainer}>
+            <div className={styles.dotBlack}></div>
+            <p className={styles.dotText}> Poids(kg)</p>
+            <div className={styles.dotRed}></div>
+            <p className={styles.dotText}> Calories brûlées (kCal)</p>
+            </div>
+            </div>
+            <Activity/> 
+          </div>
+          <Nutrients />
+        </div>
         
       </div>
     </>

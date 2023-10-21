@@ -11,4 +11,55 @@ h1{
 .prenom{
   color: red;
 }
+.dashboard{
+  display: flex;
+  padding-top: 50px;
+}
+.activity{
+  background-color: #FBFBFB;
+  padding: 10px 0px 10px 30px;
+  border-radius: 10px;
+  width: 60%;
+  margin-right: 5%;
+  height: 20%;
+
+  
+}
+.text{
+  display: flex;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-bottom: 40px;
+}
+
+.activityText{
+  font-weight: 500;
+  padding-right: 20%;
+}
+.dotContainer{
+  display: flex; /* Utilisez flexbox pour disposer les éléments horizontalement */
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 5%;
+
+}
+.dotBlack {
+  width: 10px;
+  height: 10px;
+  background-color: black;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.dotText{
+  color: #74798C;
+  font-weight: 500;
+  padding-right: 40px;
+}
+.dotRed{
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  margin-right: 10px;
+}
 
