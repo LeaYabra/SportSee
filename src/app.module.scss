@@ -3,7 +3,6 @@
   padding-top: 2%;
   line-height: 1;
 }
-
 h1{
   font-size: 3em;
   font-weight: 600;
@@ -17,13 +16,11 @@ h1{
 }
 .activity{
   background-color: #FBFBFB;
-  padding: 10px 0px 10px 30px;
+  padding: 10px 0px 40px 30px;
   border-radius: 10px;
   width: 60%;
   margin-right: 5%;
   height: 20%;
-
-  
 }
 .text{
   display: flex;
@@ -31,17 +28,15 @@ h1{
   padding-left: 20px;
   padding-bottom: 40px;
 }
-
 .activityText{
   font-weight: 500;
   padding-right: 20%;
 }
 .dotContainer{
-  display: flex; /* Utilisez flexbox pour disposer les éléments horizontalement */
+  display: flex; 
   align-items: center;
   justify-content: space-between;
   margin-left: 5%;
-
 }
 .dotBlack {
   width: 10px;
