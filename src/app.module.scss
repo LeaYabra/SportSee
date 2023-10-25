@@ -14,13 +14,15 @@ h1{
   display: flex;
   padding-top: 50px;
 }
+.graph{
+  display: flex;
+  flex-direction: column;
+}
 .activity{
   background-color: #FBFBFB;
   padding: 10px 0px 40px 30px;
   border-radius: 10px;
-  width: 60%;
   margin-right: 5%;
-  height: 20%;
 }
 .text{
   display: flex;
@@ -58,3 +60,40 @@ h1{
   margin-right: 10px;
 }
 
+.graphBas{
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+}
+.averageSession {
+ 
+  background-image: linear-gradient(to right, #FF0000 0%, #FF0000 70%, #E60000 70%, #E60000 100%);
+  border-radius: 10px;
+  width: 30%;
+  height: 80%;
+  padding-bottom: 3%;
+  margin-right: 2%; 
+}
+.textAverage{
+  color: #FFFFFF;
+  opacity: 0.5;
+  padding-left: 10%;
+  padding-top: 2%;
+  line-height: 1.5;
+  font-size: large;
+  width: 70%;
+}
+.performance{
+  background-color: #282D30;
+  border-radius: 10px;
+  width: 32%;
+  height: 90%;
+  margin-right: 2%; 
+}
+.score{
+  //background-color: RED;
+  background-color: #FBFBFB;
+  border-radius: 10px;
+  width: 30%;
+  height: 90%;
+}

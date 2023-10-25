@@ -74,7 +74,7 @@ const Activity: React.FC = () => {
 
       {data.length > 0 ? (
         <BarChart
-          width={750}
+          width={800}
           height={250}
           data={data}
           margin={{

@@ -4,6 +4,8 @@ import Nutrients from './components/Nutrients';
 import UserApi from './userApi';
 import Activity from './components/Activity';
 import AverageSessions from './components/AverageSession';
+import Performance from './components/Performance';
+import Score from './components/Score';
 import styles from './app.module.scss';
 
 function App() {
@@ -25,7 +27,9 @@ function App() {
           <p>Chargement en cours...</p>
         )}
         <div className={styles.dashboard}>
-          <div className={styles.activity}>
+          <div className={styles.graph}>
+           
+            <div className={styles.activity}>
             <div className={styles.text}>
               <p className={styles.activityText}>Activité quotidienne</p>
               <div className={styles.dotContainer}>
@@ -36,7 +40,21 @@ function App() {
               </div>
             </div>
             <Activity />
-            <AverageSessions />
+          
+            </div>
+            <div className={styles.graphBas}>
+              <div className={styles.averageSession}>
+             <p className={styles.textAverage}>Durée moyenne des sessions</p>
+              <AverageSessions />
+              </div>
+              <div className={styles.performance}>
+              <Performance />
+              </div>
+              <div className={styles.score}>
+               
+              <Score />
+              </div>
+            </div>
           </div>
           <Nutrients />
         </div>
