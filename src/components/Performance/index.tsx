@@ -6,12 +6,16 @@ import {
   PolarAngleAxis
 } from "recharts";
 
+interface PerformanceData {
+    value: number;
+    kind: string;
+}
 export default function App() {
-  const [performanceData, setPerformanceData] = useState(null);
+    const [performanceData, setPerformanceData] = useState<PerformanceData[] | null>(null);
 
   useEffect(() => {
     // Effectuer une requête HTTP pour récupérer les données depuis l'API
-    fetch("http://localhost:3000/user/12/performance")
+    fetch("http://localhost:3000/user/18/performance")
       .then((response) => response.json())
       .then((data) => {
         const kindMapping = data.data.kind;

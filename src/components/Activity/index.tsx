@@ -13,6 +13,8 @@ interface Session {
   name: string;
   pv: number;
   uv: number;
+  kilogram:number;
+  calories:number;
 }
 const CustomTooltip: React.FC<{ active: boolean; payload: any }> = ({
   active,
@@ -48,7 +50,7 @@ const Activity: React.FC = () => {
 
   useEffect(() => {
     // Appel API pour obtenir les données en utilisant fetch
-    fetch("http://localhost:3000/user/12/activity")
+    fetch("http://localhost:3000/user/18/activity")
       .then((response) => response.json())
       .then((result: { data: { sessions: Session[] } }) => {
         // Reformatage des données pour qu'elles correspondent à la structure attendue
@@ -58,6 +60,7 @@ const Activity: React.FC = () => {
           uv: session.calories,
         }));
         setData(formattedData);
+        console.log('hello',formattedData)
       })
       .catch((error) => console.error("Erreur lors de la récupération des données :", error));
   }, []);
@@ -84,7 +87,7 @@ const Activity: React.FC = () => {
             bottom: 5,
           }}
         >
-          <CartesianGrid vertical={false} width={600} strokeDasharray="3 1" />
+          <CartesianGrid vertical={false} width={650} strokeDasharray="3 1" />
           <XAxis dataKey="name"
             tickSize={20}
             axisLine={false}
@@ -97,19 +100,19 @@ const Activity: React.FC = () => {
           <YAxis
             yAxisId="right"
             orientation="right"
-            domain={[0, 400]}
+            domain={[0, 500]}
             tickCount={3}
             axisLine={false}
             tickSize={0}
             tickFormatter={(value) => {
               if (value === 0) {
                 return '69';
-              } else if (value === 200) {
+              } else if (value == 250) {
                 return '70';
-              } else if (value === 400) {
+              } else if (value === 500) {
                 return '71';
               } else {
-                return '';
+                return '0';
               }
             }}
             tick={{

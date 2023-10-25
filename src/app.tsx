@@ -28,7 +28,6 @@ function App() {
         )}
         <div className={styles.dashboard}>
           <div className={styles.graph}>
-           
             <div className={styles.activity}>
             <div className={styles.text}>
               <p className={styles.activityText}>Activité quotidienne</p>
@@ -44,15 +43,14 @@ function App() {
             </div>
             <div className={styles.graphBas}>
               <div className={styles.averageSession}>
-             <p className={styles.textAverage}>Durée moyenne des sessions</p>
-              <AverageSessions />
+                <p className={styles.textAverage}>Durée moyenne des sessions</p>
+                <AverageSessions />
               </div>
               <div className={styles.performance}>
-              <Performance />
+                <Performance />
               </div>
               <div className={styles.score}>
-               
-              <Score />
+                <Score />
               </div>
             </div>
           </div>
