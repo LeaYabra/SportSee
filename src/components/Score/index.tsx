@@ -1,10 +1,14 @@
-import React, { useCallback, useState } from "react";
 import { PieChart, Pie } from "recharts";
 import UserApi from "../../userApi";
 
 interface DataScore {
   name: string;
   value: number;
+}
+
+interface RenderCustomizedLabelProps {
+  cx: number,
+  cy: number
 }
 
 export default function App(): JSX.Element {
@@ -18,14 +22,7 @@ export default function App(): JSX.Element {
   const renderCustomizedLabel = ({
     cx,
     cy,
-    midAngle,
-    innerRadius,
-    outerRadius,
-  }: any) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * (Math.PI / 180));
-    const y = cy + radius * Math.sin(-midAngle * (Math.PI / 180));
-
+  }: RenderCustomizedLabelProps) => {
     return (
       <g>
         <circle cx={cx} cy={cy} r={90} fill="white" />

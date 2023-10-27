@@ -1,41 +1,44 @@
-import React, { useEffect, useState } from "react";
-import {
-  Radar,
-  RadarChart,
-  PolarGrid,
-  PolarAngleAxis
-} from "recharts";
+import  { useEffect, useState } from "react";
+import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
+
+const kindTypeLabels: KindTypeLabelsType = {
+  speed: "Vitesse",
+  energy: "Energie",
+  strength: "Force",
+  endurance: "Endurance",
+  cardio: "Cardio",
+  intensity: "Intensité",
+};
+
+interface KindTypeLabelsType {
+  [key:string]: string
+}
 
 interface PerformanceData {
-    value: number;
-    kind: string;
+  value: number;
+  kind: string;
 }
 export default function App() {
-    const [performanceData, setPerformanceData] = useState<PerformanceData[] | null>(null);
+  const [performanceData, setPerformanceData] = useState<
+    PerformanceData[] | null
+  >(null);
 
   useEffect(() => {
     // Effectuer une requête HTTP pour récupérer les données depuis l'API
     fetch("http://localhost:3000/user/18/performance")
       .then((response) => response.json())
       .then((data) => {
-        const kindMapping = data.data.kind;
-        // Remplacer les valeurs de kind par leurs dénominations correspondantes
-        const performanceDataWithLabels = data.data.data.map((entry) => ({
-          value: entry.value,
-          kind: kindMapping[entry.kind] === "speed" ? "Vitesse":
-                kindMapping[entry.kind] === "energy" ? "Energie" :
-                kindMapping[entry.kind] === "cardio" ? "Cardio" :
-                kindMapping[entry.kind] === "strength" ? "Force" :
-                kindMapping[entry.kind] === "endurance" ? "Endurance":
-                kindMapping[entry.kind] === "intensity" ? "Intensité" :
-                kindMapping[entry.kind],
-           }));
-
-        // Trier les données en fonction de "kind" dans l'ordre décroissant
-        performanceDataWithLabels.sort((a, b) => a.kind - b.kind);
-
-        // Inverser l'ordre du tableau pour que le "kind" 6 soit en haut
-        performanceDataWithLabels.reverse();
+        let performanceDataWithLabels: PerformanceData[] = [];
+        Object.keys(kindTypeLabels).map((type: string) => {
+          const performanceData = data.data.data.filter(
+            (entry: PerformanceData) => {
+              entry.kind === type;
+            }
+          );
+          performanceDataWithLabels = performanceDataWithLabels.concat(performanceData.map((entry: PerformanceData) => {
+            return {...entry, kind: kindTypeLabels[type]}
+          }));
+        });
 
         setPerformanceData(performanceDataWithLabels);
       })
@@ -58,13 +61,12 @@ export default function App() {
       data={performanceData}
     >
       <PolarGrid />
-      <PolarAngleAxis dataKey="kind" axisLine={{ stroke: "white" }} tick={{ fill: "white" }} />
-      <Radar
-        name="User"
-        dataKey="value"
-        fill="#E60000"
-        fillOpacity={0.7}
+      <PolarAngleAxis
+        dataKey="kind"
+        axisLine={{ stroke: "white" }}
+        tick={{ fill: "white" }}
       />
+      <Radar name="User" dataKey="value" fill="#E60000" fillOpacity={0.7} />
     </RadarChart>
   );
 }
