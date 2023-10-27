@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, Tooltip } from "recharts";
 
 interface UserData {
   day: string;
   sessionLength: number;
 }
+interface UserDataMap {
+  [day: string]: string;
+}
 
-const dayMapping = {
+const dayMapping : UserDataMap={
   1: "L",
   2: "M",
   3: "M",

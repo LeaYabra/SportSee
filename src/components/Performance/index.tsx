@@ -1,35 +1,40 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
 
 const kindTypeLabels: KindTypeLabelsType = {
+  intensity: "Intensité",
   speed: "Vitesse",
-  energy: "Energie",
   strength: "Force",
   endurance: "Endurance",
+  energy: "Energie",
   cardio: "Cardio",
-  intensity: "Intensité",
 };
 
-const mapType:MapTypeType = {
-  1: 'cardio',
-  2: 'energy',
-  3: 'endurance',
-  4: 'strength',
-  5: 'speed',
-  6: 'intensity'
-}
+const mapType: MapTypeType = {
+  1: "cardio",
+  2: "energy",
+  3: "endurance",
+  4: "strength",
+  5: "speed",
+  6: "intensity",
+};
 
 interface MapTypeType {
-  [key: number]: string
+  [key: number]: string;
 }
 
 interface KindTypeLabelsType {
-  [key:string]: string
+  [key: string]: string;
+}
+
+interface PerformanceDataEntry {
+  value: number;
+  kind: number;
 }
 
 interface PerformanceData {
   value: number;
-  kind: string;
+  kind: "Intensité" | "Vitesse" | "Force" | "Endurance" | "Energie" | "Cardio";
 }
 export default function App() {
   const [performanceData, setPerformanceData] = useState<
@@ -44,27 +49,28 @@ export default function App() {
         let performanceDataWithLabels: PerformanceData[] = [];
         Object.keys(kindTypeLabels).map((type: string) => {
           const performanceData = data.data.data.filter(
-            (entry: PerformanceData) => {
-              console.log('compare ', mapType[entry.kind], ' with ', type, typeof entry.kind, typeof type)
+            (entry: PerformanceDataEntry) => {
               return mapType[entry.kind] === type;
             }
           );
-          performanceDataWithLabels = performanceDataWithLabels.concat(performanceData.map((entry: PerformanceData) => {
-            return {...entry, kind: kindTypeLabels[type]}
-          }));
+          performanceDataWithLabels = performanceDataWithLabels.concat(
+            performanceData.map((entry: PerformanceData) => {
+              return { ...entry, kind: kindTypeLabels[type] };
+            })
+          );
         });
-
         setPerformanceData(performanceDataWithLabels);
       })
       .catch((error) => {
         console.error("Erreur lors de la récupération des données : ", error);
       });
   }, []);
+  
 
   if (!performanceData) {
     return <div>Chargement en cours...</div>;
   }
-
+ 
   return (
     <RadarChart
       cx={138}
