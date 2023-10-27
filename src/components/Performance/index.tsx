@@ -1,4 +1,4 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis } from "recharts";
 
 const kindTypeLabels: KindTypeLabelsType = {
@@ -10,26 +10,31 @@ const kindTypeLabels: KindTypeLabelsType = {
   intensity: "Intensité",
 };
 
-const mapType:MapTypeType = {
-  1: 'cardio',
-  2: 'energy',
-  3: 'endurance',
-  4: 'strength',
-  5: 'speed',
-  6: 'intensity'
-}
+const mapType: MapTypeType = {
+  1: "cardio",
+  2: "energy",
+  3: "endurance",
+  4: "strength",
+  5: "speed",
+  6: "intensity",
+};
 
 interface MapTypeType {
-  [key: number]: string
+  [key: number]: string;
 }
 
 interface KindTypeLabelsType {
-  [key:string]: string
+  [key: string]: string;
+}
+
+interface PerformanceDataEntry {
+  value: number;
+  kind: number;
 }
 
 interface PerformanceData {
   value: number;
-  kind: string;
+  kind: "Vitesse" | "Energie" | "Force" | "Endurance" | "Cardio" | "Intensité";
 }
 export default function App() {
   const [performanceData, setPerformanceData] = useState<
@@ -44,14 +49,23 @@ export default function App() {
         let performanceDataWithLabels: PerformanceData[] = [];
         Object.keys(kindTypeLabels).map((type: string) => {
           const performanceData = data.data.data.filter(
-            (entry: PerformanceData) => {
-              console.log('compare ', mapType[entry.kind], ' with ', type, typeof entry.kind, typeof type)
+            (entry: PerformanceDataEntry) => {
+              console.log(
+                "compare ",
+                mapType[entry.kind],
+                " with ",
+                type,
+                typeof entry.kind,
+                typeof type
+              );
               return mapType[entry.kind] === type;
             }
           );
-          performanceDataWithLabels = performanceDataWithLabels.concat(performanceData.map((entry: PerformanceData) => {
-            return {...entry, kind: kindTypeLabels[type]}
-          }));
+          performanceDataWithLabels = performanceDataWithLabels.concat(
+            performanceData.map((entry: PerformanceData) => {
+              return { ...entry, kind: kindTypeLabels[type] };
+            })
+          );
         });
 
         setPerformanceData(performanceDataWithLabels);
