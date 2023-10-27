@@ -10,6 +10,19 @@ const kindTypeLabels: KindTypeLabelsType = {
   intensity: "Intensité",
 };
 
+const mapType:MapTypeType = {
+  1: 'cardio',
+  2: 'energy',
+  3: 'endurance',
+  4: 'strength',
+  5: 'speed',
+  6: 'intensity'
+}
+
+interface MapTypeType {
+  [key: number]: string
+}
+
 interface KindTypeLabelsType {
   [key:string]: string
 }
@@ -32,7 +45,8 @@ export default function App() {
         Object.keys(kindTypeLabels).map((type: string) => {
           const performanceData = data.data.data.filter(
             (entry: PerformanceData) => {
-              entry.kind === type;
+              console.log('compare ', mapType[entry.kind], ' with ', type, typeof entry.kind, typeof type)
+              return mapType[entry.kind] === type;
             }
           );
           performanceDataWithLabels = performanceDataWithLabels.concat(performanceData.map((entry: PerformanceData) => {
