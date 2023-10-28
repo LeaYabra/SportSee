@@ -73,7 +73,7 @@ export default function App() {
  
   return (
     <RadarChart
-      cx={138}
+      cx={132}
       cy={140}
       outerRadius={80}
       width={400}

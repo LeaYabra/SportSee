@@ -12,7 +12,7 @@ function App() {
   const userData = UserApi();
 
   return (
-    <>
+    <div className={styles.appContainer}>
       <Header />
       <Banner />
       <div className={styles.home}>
@@ -39,7 +39,6 @@ function App() {
               </div>
             </div>
             <Activity />
-          
             </div>
             <div className={styles.graphBas}>
               <div className={styles.averageSession}>
@@ -57,7 +56,7 @@ function App() {
           <Nutrients />
         </div>
       </div>
-    </>
+    </div>
   );
 }
 export default App;

@@ -1,9 +1,14 @@
+.appContainer{
+  padding: 0;
+  margin:0;
+  min-width: 180vh;
+}
 .home{
   padding-left: 15%;
   padding-top: 2%;
   line-height: 1;
-
 }
+
 h1{
   font-size: 3em;
   font-weight: 600;
@@ -14,7 +19,6 @@ h1{
 .dashboard{
   display: flex;
   padding-top: 50px;
- 
 }
 .graph{
   display: flex;
@@ -87,7 +91,7 @@ h1{
   background-color: #282D30;
   border-radius: 10px;
   width: 32%;
-  height: 90%;
+  height: 88%;
   margin-right: 2%; 
 }
 .score{
