@@ -1,31 +1,38 @@
-import Header from './components/Header';
-import Banner from './components/Banner';
-import Nutrients from './components/Nutrients';
-import UserApi from './userApi';
-import Activity from './components/Activity';
-import AverageSessions from './components/AverageSession';
-import Performance from './components/Performance';
-import Score from './components/Score';
-import styles from './app.module.scss';
+import Header from '../components/Header';
+import Banner from '../components/Banner';
+import Nutrients from '../components/Nutrients';
+import UserApi from '../services/userApi';
+import Activity from '../components/Activity';
+import AverageSessions from '../components/AverageSession';
+import Performance from '../components/Performance';
+import Score from '../components/Score';
+import styles from './user.module.scss';
 
-function App() {
+function User() {
   const userData = UserApi();
+
+  if (userData === null) {
+    // Afficher un message d'erreur si les données ne sont pas disponibles
+    return (  
+    <div className={styles.appContainer}>
+      <Header />
+      <Banner />
+      <div className={styles.home}>
+        <h1 className={styles.titleError}>Oupssss 😕😕</h1> 
+        <p className={styles.textError}>Une erreur s'est produite lors de la récupération des données. Veuillez vérifier l'URL ou réessayer ultérieurement.</p>
+      </div>
+    </div> 
+  ) }
 
   return (
     <div className={styles.appContainer}>
       <Header />
       <Banner />
       <div className={styles.home}>
-        {userData ? (
-          <>
-            <h1>
-              Bonjour <span className={styles.prenom}>{userData.data.userInfos.firstName} </span>
-            </h1>
-            <p>Félicitations ! Vous avez dépassé vos objectifs hier 👏</p>
-          </>
-        ) : (
-          <p>Chargement en cours...</p>
-        )}
+        <h1>
+          Bonjour <span className={styles.prenom}>{userData.data.userInfos.firstName} </span>
+        </h1>
+        <p>Félicitations ! Vous avez dépassé vos objectifs hier 👏</p>
         <div className={styles.dashboard}>
           <div className={styles.graph}>
             <div className={styles.activity}>
@@ -59,4 +66,4 @@ function App() {
     </div>
   );
 }
-export default App;
+export default User;

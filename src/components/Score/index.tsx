@@ -1,5 +1,5 @@
 import { PieChart, Pie } from "recharts";
-import UserApi from "../../userApi";
+import UserApi from "../../services/userApi";
 
 interface DataScore {
   name: string;
@@ -13,10 +13,11 @@ interface RenderCustomizedLabelProps {
 
 export default function Score(): JSX.Element {
   const userData = UserApi();
-  const scoreData = (userData.data.todayScore) * 100 || (userData.data.score) * 100  ; 
+
+  const scoreData = userData ? (userData.data.todayScore) * 100 || (userData.data.score) * 100 : 0;
 
   const data: DataScore[] = [
-      { name: "Today Score", value: scoreData },
+    { name: "Today Score", value: scoreData },
   ];
 
   const renderCustomizedLabel = ({
@@ -59,11 +60,10 @@ export default function Score(): JSX.Element {
       </g>
     );
   };
-  // Calculer startAngle et endAngle en fonction de todayScoreData
-  const startAngle = 90; 
-  const endAngle = 90+(scoreData / 100) * 360; // Se termine à l'angle correspondant au pourcentage
+  const startAngle = 90;
+  const endAngle = 90 + (scoreData / 100) * 360;
 
-    return (
+  return (
     <div style={{ position: "absolute", fill: "pink" }}>
       <PieChart width={400} height={300}>
         <Pie

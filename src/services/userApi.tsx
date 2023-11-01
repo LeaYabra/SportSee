@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
 
 interface UserData {
   data: {
@@ -16,22 +17,22 @@ interface UserData {
   };
 }
 
-function UserApi(): UserData {
+function UserApi() {
   const [userData, setUserData] = useState<UserData | null>(null);
+  const {id} = useParams();
 
   useEffect(() => {
-    fetch('http://localhost:3000/user/18')
+    fetch(`http://localhost:3000/user/${id}`)
       .then(response => response.json())
       .then((data: UserData) => {
         setUserData(data);
       })
       .catch(error => {
-        console.error('Une erreur s\'est produite : ', error);
+        console.error("Erreur lors de la récupération des données : ", error);
       });
-  }, []);
+  }, [id]);
 
-  return userData || { data: { userInfos: { firstName: '' }, keyData: { calorieCount: 0, proteinCount: 0, carbohydrateCount: 0, lipidCount:0},
-  score: 0, todayScore: 0 }};
+  return userData || null;
 }
 
 export default UserApi;

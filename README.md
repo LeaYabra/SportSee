@@ -39,7 +39,7 @@ Lancer le _front-end_ sur le port 3001 :
 
 `npm run dev`
 
-Le _front-end_ est alors consultable à l'URL `http://localhost:5174`.
+Le _front-end_ est alors consultable à l'URL `http://localhost:5174/user/id`.
 
 ### N.B. :
 
@@ -80,7 +80,7 @@ Launch front-end on port 3001:
 
 `npm run dev`
 
-Front-end is now rendered at URL `http://localhost:5174`.
+Front-end is now rendered at URL `http://localhost:5174/user/id`.
 
 ### N.B.:
 

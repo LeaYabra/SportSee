@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import {
   BarChart,
   Bar,
@@ -8,36 +7,11 @@ import {
   Tooltip,
 } from "recharts";
 
-// Creation d'une interface pour définir le type des données
-interface Session {
-  kilogram: number;
-  calories: number;
-  payload: Array<{ pv: number; uv: number }>;
-}
+import { useActivityData } from "../../services/activityApi";
 
 const Activity: React.FC = () => {
-  const [data, setData] = useState<Session[]>([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/user/18/activity")
-      .then((response) => response.json())
-      .then((result: { data: { sessions: Session[] } }) => {
+  const data = useActivityData();
   
-        const formattedData = result.data.sessions.map((session, index) => ({
-          name: (index + 1).toString(),
-          kilogram: session.kilogram,
-          calories: session.calories,
-          pv: session.kilogram,
-          uv: session.calories,
-          payload: [{ pv: session.kilogram, uv: session.calories }],
-        }));
-        setData(formattedData);
-      })
-      .catch((error) => console.error("Erreur lors de la récupération des données :", error));
-  }, []);
-  
-  
-
   return (
     <div>
       <style>
@@ -59,7 +33,7 @@ const Activity: React.FC = () => {
             left: 20,
             bottom: 5,
           }}
-        >
+          >
           <CartesianGrid vertical={false} width={650} strokeDasharray="3 1" />
           <XAxis dataKey="name"
             tickSize={20}
@@ -95,36 +69,36 @@ const Activity: React.FC = () => {
           />
           <Tooltip content={(props) => {
             const { active, payload } = props;
-              if (active && payload && payload.length > 0) {
+            if (active && payload && payload.length > 0) {
               const data = payload[0];
               return (
-            <div className="custom-tooltip">
-            <p
-              style={{
-              background: "#E60000",
-              color: "white",
-              padding: "15px",
-              lineHeight: "3.5",
-              fontWeight: 500,
-              textAlign: "center",
-              }}
-            >
-            {`${data.payload.pv}kg`}
-            <br />
-            {`${data.payload.uv}kcal`}
-            </p>
-           </div>
-  );
-}
-return null;
+                <div className="custom-tooltip">
+                  <p
+                    style={{
+                    background: "#E60000",
+                    color: "white",
+                    padding: "15px",
+                    lineHeight: "3.5",
+                    fontWeight: 500,
+                    textAlign: "center",
+                    }}
+                    >
+                    {`${data.payload.pv}kg`}
+                    <br />
+                    {`${data.payload.uv}kcal`}
+                  </p>
+                </div>
+              );
+            }
+            return null;
           }} />
-
+          
           <Bar dataKey="pv" fill="#FF0000" radius={[9, 9, 0, 0]} barSize={10} yAxisId="right" />
           <Bar dataKey="empty" fill="transparent" barSize={5} yAxisId="right" />
           <Bar dataKey="uv" fill="#000000" radius={[9, 9, 0, 0]} barSize={10} yAxisId="right" />
         </BarChart>
       ) : (
-        <p>Chargement en cours...</p>
+        <p>Erreur lors de la récupération des données</p>
       )}
     </div>
   );

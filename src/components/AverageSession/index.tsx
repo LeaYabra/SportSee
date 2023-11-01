@@ -1,43 +1,9 @@
-import { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, Tooltip } from "recharts";
-
-interface UserData {
-  day: string;
-  sessionLength: number;
-}
-interface UserDataMap {
-  [day: string]: string;
-}
-
-const dayMapping : UserDataMap={
-  1: "L",
-  2: "M",
-  3: "M",
-  4: "J",
-  5: "V",
-  6: "S",
-  7: "D",
-};
+import { useAverageSessionData } from "../../services/averageSessionApi";
 
 export default function AverageSession() {
-  const [userData, setUserData] = useState<UserData[]>([]);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/user/18/average-sessions")
-      .then((response) => response.json())
-      .then((data: { data: { sessions: UserData[] } }) => {
-        // Mapper les valeurs numériques aux noms des jours de la semaine
-        const userDataWithDayNames = data.data.sessions.map((session) => ({
-          ...session,
-          day: dayMapping[session.day],
-        }));
-        setUserData(userDataWithDayNames);
-      })
-      .catch((error) => {
-        console.error("Erreur lors de la récupération des données : ", error);
-      });
-  }, []);
-
+  const userData = useAverageSessionData();
+  
   return (
     <LineChart width={250} height={150} data={userData}>
       <XAxis
