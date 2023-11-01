@@ -12,11 +12,11 @@ interface RenderCustomizedLabelProps {
 }
 
 export default function App(): JSX.Element {
-    const userData = UserApi();
-    const scoreData = parseFloat(userData.data.score) * 100; 
+  const userData = UserApi();
+  const scoreData = (userData.data.todayScore) * 100 || (userData.data.score) * 100  ; 
 
   const data: DataScore[] = [
-    { name: "Today Score", value: scoreData },
+      { name: "Today Score", value: scoreData },
   ];
 
   const renderCustomizedLabel = ({

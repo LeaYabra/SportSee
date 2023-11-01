@@ -11,7 +11,8 @@ interface UserData {
       carbohydrateCount: number;
       lipidCount: number;
     };
-   score: string;
+   score: number;
+   todayScore:number;
   };
 }
 
@@ -30,7 +31,7 @@ function UserApi(): UserData {
   }, []);
 
   return userData || { data: { userInfos: { firstName: '' }, keyData: { calorieCount: 0, proteinCount: 0, carbohydrateCount: 0, lipidCount:0},
-  score: 'null' }}; // Retourne un objet vide avec des valeurs par défaut
+  score: 0, todayScore: 0 }};
 }
 
 export default UserApi;
