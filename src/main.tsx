@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import User from './pages/user'
 import './index.css'
+
 import {
   createBrowserRouter,
   RouterProvider,
@@ -13,7 +14,6 @@ const router = createBrowserRouter([
     element: <User />,
   },
 ]);
-
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

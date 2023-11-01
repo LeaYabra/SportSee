@@ -5,7 +5,6 @@ import lipides from '../../assets/lipides.svg';
 import proteines from '../../assets/proteines.svg';
 import UserApi from "../../services/userApi";
 
-
 function Nutrients() {
   const userData = UserApi();
 
