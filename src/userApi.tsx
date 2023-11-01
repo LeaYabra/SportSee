@@ -16,11 +16,11 @@ interface UserData {
   };
 }
 
-function UserApi(): UserData {
+function UserApi(userId: string): UserData {
   const [userData, setUserData] = useState<UserData | null>(null);
 
   useEffect(() => {
-    fetch('http://localhost:3000/user/18')
+    fetch(`http://localhost:3000/user/${userId}`)
       .then(response => response.json())
       .then((data: UserData) => {
         setUserData(data);
