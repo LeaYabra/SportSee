@@ -1,15 +1,17 @@
-import Header from './components/Header';
-import Banner from './components/Banner';
-import Nutrients from './components/Nutrients';
-import UserApi from './userApi';
-import Activity from './components/Activity';
-import AverageSessions from './components/AverageSession';
-import Performance from './components/Performance';
-import Score from './components/Score';
-import styles from './app.module.scss';
+import Header from '../components/Header';
+import Banner from '../components/Banner';
+import Nutrients from '../components/Nutrients';
+import UserApi from '../userApi';
+import Activity from '../components/Activity';
+import AverageSessions from '../components/AverageSession';
+import Performance from '../components/Performance';
+import Score from '../components/Score';
+import styles from './user.module.scss';
+import { useParams } from 'react-router-dom';
 
 function App() {
-  const userData = UserApi();
+  const {id} = useParams();
+  const userData = UserApi(id as string);
 
   return (
     <div className={styles.appContainer}>

@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
 } from "recharts";
+import { useParams } from 'react-router-dom';
 
 // Creation d'une interface pour définir le type des données
 interface Session {
@@ -17,9 +18,10 @@ interface Session {
 
 const Activity: React.FC = () => {
   const [data, setData] = useState<Session[]>([]);
+  const {id} = useParams();
 
   useEffect(() => {
-    fetch("http://localhost:3000/user/18/activity")
+  fetch(`http://localhost:3000/user/${id}/activity`)
       .then((response) => response.json())
       .then((result: { data: { sessions: Session[] } }) => {
   
@@ -34,7 +36,7 @@ const Activity: React.FC = () => {
         setData(formattedData);
       })
       .catch((error) => console.error("Erreur lors de la récupération des données :", error));
-  }, []);
+  }, [id]);
   
   
 
