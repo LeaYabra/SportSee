@@ -11,7 +11,7 @@ interface RenderCustomizedLabelProps {
   cy: number
 }
 
-export default function App(): JSX.Element {
+export default function Score(): JSX.Element {
   const userData = UserApi();
   const scoreData = (userData.data.todayScore) * 100 || (userData.data.score) * 100  ; 
 

@@ -15,7 +15,6 @@ interface Session {
   payload: Array<{ pv: number; uv: number }>;
 }
 
-
 const Activity: React.FC = () => {
   const [data, setData] = useState<Session[]>([]);
 

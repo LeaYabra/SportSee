@@ -36,7 +36,7 @@ interface PerformanceData {
   value: number;
   kind: "Intensité" | "Vitesse" | "Force" | "Endurance" | "Energie" | "Cardio";
 }
-export default function App() {
+export default function Performance() {
   const [performanceData, setPerformanceData] = useState<
     PerformanceData[] | null
   >(null);
