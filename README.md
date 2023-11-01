@@ -2,7 +2,7 @@
 
 Code source du Projet 12 - Développez un tableau de bord d'analytics avec React du parcours Développeur Front-end d'OpenClassrooms.
 
-IMAGE:
+![Dashboard Sportsee](https://github.com/LeaYabra/SportSee/blob/main/src/assets/dashboard.png)
 
 ## Installation (_english below_)
 
